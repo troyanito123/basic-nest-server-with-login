@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 
 import { config } from './config/config';
 import { DatabaseConfig } from './config/database.config';
+import { RoleModule } from './modules/role/role.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { DatabaseConfig } from './config/database.config';
     TypeOrmModule.forRootAsync({
       useClass: DatabaseConfig,
     }),
+    RoleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
