@@ -17,21 +17,7 @@ export class ExistsOnDatabaseConstraint
     }
     return getManager()
       .findOne(entity, { ['id']: value })
-      .then((resp) => {
-        if (resp) {
-          if (resp['status']) {
-            if (resp['status'] === 'ACTIVE') {
-              return true;
-            } else {
-              return false;
-            }
-          } else {
-            return true;
-          }
-        } else {
-          return false;
-        }
-      });
+      .then((resp) => (resp ? true : false));
   }
 }
 

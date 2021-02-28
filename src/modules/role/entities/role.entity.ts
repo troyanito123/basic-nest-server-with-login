@@ -1,3 +1,4 @@
+import { User } from 'src/modules/user/entities/user.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -21,9 +22,12 @@ export class Role {
   @Column()
   description: string;
 
+  @OneToMany(() => User, (user) => user.role)
+  users: User[];
+
   @BeforeInsert()
   @BeforeUpdate()
   codeToUppercase() {
-    this.code = this.code.trim().toLocaleUpperCase();
+    this.code = this.code.trim().toUpperCase();
   }
 }

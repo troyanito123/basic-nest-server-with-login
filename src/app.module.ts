@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { config } from './config/config';
 import { DatabaseConfig } from './config/database.config';
 import { RoleModule } from './modules/role/role.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RoleModule } from './modules/role/role.module';
       useClass: DatabaseConfig,
     }),
     RoleModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

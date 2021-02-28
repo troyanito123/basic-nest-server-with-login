@@ -3,6 +3,11 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { RoleRepository } from './role.repository';
 
+export enum RoleCode {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
 @Injectable()
 export class RoleService {
   constructor(private roleRepository: RoleRepository) {}
@@ -32,5 +37,9 @@ export class RoleService {
 
   remove(id: number) {
     return `NOT IMPLEMENT: This action removes a #${id} role`;
+  }
+
+  findByCode(code: string) {
+    return this.roleRepository.findOne({ where: { code } });
   }
 }
