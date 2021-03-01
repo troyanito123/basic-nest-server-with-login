@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 
 import { ConfigOptions } from './config/config';
 import generateTypeormConfigFile from './scripts/generate-typeormconfig';
+import setDefaultData from './scripts/set-default-data';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +13,10 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   // generate ormconfig.json
   generateTypeormConfigFile(configService);
+
+  // generate default data
+  setDefaultData(configService);
+
   const port = configService.get(ConfigOptions.port);
   await app.listen(port);
 }
