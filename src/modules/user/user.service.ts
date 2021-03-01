@@ -56,4 +56,11 @@ export class UserService {
     user.status = UserStatus.DELETE;
     return this.userRepository.save(user);
   }
+
+  findByEmail(email: string) {
+    return this.userRepository.findOne({
+      where: { email, status: UserStatus.ACTIVE },
+      relations: ['role'],
+    });
+  }
 }
